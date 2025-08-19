@@ -208,9 +208,9 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
 
     try {
         // Verify the token
-        console.log("token at backend ",token);
+        // console.log("token at backend ",token);
         const decodedToken = jwt.verify(token, "dhnncncdhde9ied3udnnsllsjdkjdnc");
-        console.log("decodedToken: ", decodedToken);
+        // console.log("decodedToken: ", decodedToken);
         res.status(200).json({ user: decodedToken });
 
     } catch (error) {
@@ -222,7 +222,7 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
 
 
 export const updateData=asyncHandler(async(req,res)=>{
-    console.log("data from frontend ", req.body);
+    // console.log("data from frontend ", req.body);
     const difficulty=req.body.difficulty;
     let type="easy";
     if(difficulty===7)type="medium";
@@ -230,7 +230,7 @@ export const updateData=asyncHandler(async(req,res)=>{
     
     const points=req.body.points;
     const id=(req.body.id);
-    console.log("type",type);
+    // console.log("type",type);
     // Find the user
     const user = await User.findById(id);
     if(!user){
@@ -251,7 +251,7 @@ export const leaderboard=asyncHandler(async(req,res)=>{
     if(!users){
         throw new ApiError(500,"Something went wrong while fetching the leaderboard")
     }
-    console.log("users at leaderboard ", users);
+    // console.log("users at leaderboard ", users);
     let easyScore=[],mediumScore=[],hardScore=[];
     users.forEach((user)=>{
         easyScore.push({points:user.easy,username:user.userName,phone:user.phone,enroll:user.enroll});
