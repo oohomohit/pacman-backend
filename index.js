@@ -12,14 +12,15 @@ dotenv.config({
 // CORS configuration for Vercel
 const corsOptions = {
   origin: [
-    process.env.CORS_ORIGIN,
-    `http://localhost:${process.env.PORT || 5000}`,
-
     // Your production frontend URL
     `${process.env.FRONTEND_URL}`,
     
     // Add any other Vercel URLs for your frontend
-    `${process.env.FRONTEND_GIT_URL}`
+    `${process.env.FRONTEND_GIT_URL}`,
+
+    process.env.CORS_ORIGIN,
+    
+    `http://localhost:${process.env.PORT || 5000}`
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
