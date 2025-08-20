@@ -5,24 +5,20 @@ import routes from "./routes.js";
 
 const app = express()
 
-const corsOptions = {
-  origin: [
-    // Your production frontend URL
-    `${process.env.FRONTEND_URL}`,
-    
-    // Add any other Vercel URLs for your frontend
-    `${process.env.FRONTEND_GIT_URL}`,
+// const corsOptions = {
+  
+// };
 
+app.use(cors({origin: [
+    process.env.FRONTEND_URL,
+    process.env.FRONTEND_GIT_URL,
     process.env.CORS_ORIGIN,
-
-    `http://localhost:${process.env.PORT || 3000}`
+    `http://localhost:3000`
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-};
-
-app.use(`${process.env.FRONTEND_URL}`, cors(corsOptions));
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
 
 app.use(express.json({ limit: "16kb" }))
 app.use(express.urlencoded({ extended: true, limit: "16kb" }))
