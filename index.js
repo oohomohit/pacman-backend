@@ -14,7 +14,7 @@ const corsOptions = {
   origin: [
     process.env.CORS_ORIGIN,
     `http://localhost:${process.env.PORT || 5000}`,
-    
+
     // Your production frontend URL
     `${process.env.FRONTEND_URL}`,
     
@@ -31,6 +31,8 @@ app.use('*', cors(corsOptions));
 // Essential middleware for POST requests
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+
+const PORT = process.env.PORT || 5000;
 
 // Connect to database and start server
 connectDB()
