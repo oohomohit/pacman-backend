@@ -10,8 +10,8 @@ const app = express()
 // };
 
 app.use(cors({origin: [
-    process.env.FRONTEND_URL,
-    process.env.FRONTEND_GIT_URL,
+    `${process.env.FRONTEND_URL}`,
+    `${process.env.FRONTEND_GIT_URL}`,
     process.env.CORS_ORIGIN,
     `http://localhost:3000`
   ],
