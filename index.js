@@ -9,30 +9,6 @@ dotenv.config({
     path: './.env'
 })
 
-// CORS configuration for Vercel
-const corsOptions = {
-  origin: [
-    // Your production frontend URL
-    `${process.env.FRONTEND_URL}`,
-    
-    // Add any other Vercel URLs for your frontend
-    `${process.env.FRONTEND_GIT_URL}`,
-
-    process.env.CORS_ORIGIN,
-
-    `http://localhost:${process.env.PORT || 5000}`
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-};
-
-app.use('*', cors(corsOptions));
-
-
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-
 const PORT = process.env.PORT || 5000;
 
 // Connect to database and start server
