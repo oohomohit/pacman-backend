@@ -20,7 +20,9 @@ import bcrypt from "bcryptjs";
 // return res
 
 export const registerUser = asyncHandler(async (req, res) => {
+    console.log("req body at register user: ", req.body);
     const { userName, email, password, enroll, phone } = req.body;
+    console.log("userName: ", userName);
     if ([userName, email, password, enroll, phone].some((field) => !field || field.trim() === "")) {
         throw new ApiError(400, "All fields are required");
     }

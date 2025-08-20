@@ -19,7 +19,7 @@ const corsOptions = {
     `${process.env.FRONTEND_GIT_URL}`,
 
     process.env.CORS_ORIGIN,
-    
+
     `http://localhost:${process.env.PORT || 5000}`
   ],
   credentials: true,
@@ -29,7 +29,7 @@ const corsOptions = {
 
 app.use('*', cors(corsOptions));
 
-// Essential middleware for POST requests
+
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
