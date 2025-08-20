@@ -12,26 +12,25 @@ dotenv.config({
 // CORS configuration for Vercel
 const corsOptions = {
   origin: [
+    process.env.CORS_ORIGIN,
     `http://localhost:${process.env.PORT || 5000}`,
-    `${process.env.FRONTEND_URL}`, // Replace with your actual frontend URL
-    // Add any other domains you need
+    
+    // Your production frontend URL
+    `${process.env.FRONTEND_URL}`,
+    
+    // Add any other Vercel URLs for your frontend
+    `${process.env.FRONTEND_GIT_URL}`
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 };
 
-app.use(cors(corsOptions));
+app.use('*', cors(corsOptions));
 
 // Essential middleware for POST requests
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-
-// Handle preflight OPTIONS requests
-app.options('*', cors(corsOptions));
-
-// Get port from environment or default to 5000
-const PORT = process.env.PORT || 5000;
 
 // Connect to database and start server
 connectDB()
