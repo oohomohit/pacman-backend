@@ -22,7 +22,7 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 };
 
-app.use(cors(corsOptions));
+app.use(`${process.env.FRONTEND_URL}`, cors(corsOptions));
 
 app.use(express.json({ limit: "16kb" }))
 app.use(express.urlencoded({ extended: true, limit: "16kb" }))
