@@ -224,19 +224,23 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
 export const updateData=asyncHandler(async(req,res)=>{
     // console.log("data from frontend ", req.body);
     const difficulty=req.body.difficulty;
-    let type="easy";
-    if(difficulty===7)type="medium";
-    if(difficulty===9)type="hard";
+    console.log("difficulty: ", difficulty);
+    // let type;
+    if(difficulty==='Easy Mode')type="easy";
+    if(difficulty==='Medium Mode')type="medium";
+    if(difficulty==='Hard Mode')type="hard";
     
     const points=req.body.points;
     const id=(req.body.id);
-    // console.log("type",type);
+    // console.log("type: ",type);
     // Find the user
     const user = await User.findById(id);
     if(!user){
         throw new ApiError(500,"User not found while updating the user data");
     }
     // Only update if new score is higher
+    // console.log(`user: ${user}`);
+    // console.log(`Updating ${type} score for user ${user.userName}: ${user[type]} -> ${points}`);
     if (user[type] === null || points > user[type]) {
         user[type] = points;
         await user.save();
