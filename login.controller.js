@@ -225,10 +225,10 @@ export const updateData=asyncHandler(async(req,res)=>{
     // console.log("data from frontend ", req.body);
     const difficulty=req.body.difficulty;
     console.log("difficulty: ", difficulty);
-    // let type;
-    if(difficulty==='Easy Mode')type="easy";
-    if(difficulty==='Medium Mode')type="medium";
-    if(difficulty==='Hard Mode')type="hard";
+    let type;
+    if(difficulty==='Easy Mode' || difficulty===5)type="easy";
+    if(difficulty==='Medium Mode' || difficulty===7)type="medium";
+    if(difficulty==='Hard Mode'|| difficulty===9)type="hard";
     
     const points=req.body.points;
     const id=(req.body.id);
